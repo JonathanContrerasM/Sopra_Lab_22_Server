@@ -7,7 +7,12 @@ public class UserGetDTO {
   private Long id;
   private String name;
   private String username;
+  private String password;
   private UserStatus status;
+  private String registrationDate;
+  private String birthDate;
+
+
 
   public Long getId() {
     return id;
@@ -33,11 +38,35 @@ public class UserGetDTO {
     this.username = username;
   }
 
+  public String getPassword() {
+      return password;
+  }
+
+  public void setPassword(String password) {
+      this.password = password;
+  }
+
   public UserStatus getStatus() {
     return status;
   }
 
   public void setStatus(UserStatus status) {
     this.status = status;
+  }
+
+  public String getRegistrationDate() {
+      return registrationDate;
+  }
+
+  public void setRegistrationDate(String registrationDate) {
+      this.registrationDate = registrationDate;
+  }
+
+  public String getBirthDate() {
+      return birthDate;
+  }
+
+  public void setBirthDate(String birthDate) {
+      this.birthDate = birthDate;
   }
 }

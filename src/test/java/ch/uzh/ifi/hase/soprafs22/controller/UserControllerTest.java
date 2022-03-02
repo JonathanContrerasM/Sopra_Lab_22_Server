@@ -75,6 +75,7 @@ public class UserControllerTest {
     user.setId(1L);
     user.setName("Test User");
     user.setUsername("testUsername");
+    user.setPassword("abcdefg1234");
     user.setToken("1");
     user.setStatus(UserStatus.ONLINE);
 
@@ -95,6 +96,7 @@ public class UserControllerTest {
         .andExpect(jsonPath("$.id", is(user.getId().intValue())))
         .andExpect(jsonPath("$.name", is(user.getName())))
         .andExpect(jsonPath("$.username", is(user.getUsername())))
+        .andExpect(jsonPath("$.password", is((user.getPassword()))))
         .andExpect(jsonPath("$.status", is(user.getStatus().toString())));
   }
 

@@ -1,6 +1,7 @@
 package ch.uzh.ifi.hase.soprafs22.entity;
 
 import ch.uzh.ifi.hase.soprafs22.constant.UserStatus;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -34,6 +35,12 @@ public class User implements Serializable {
   @Column(nullable = false)
   private String password;
 
+  @Column(nullable = true)
+  private String registrationDate;
+
+  @Column(nullable = true)
+  private String birthDate;
+
   @Column(nullable = false, unique = true)
   private String token;
 
@@ -41,14 +48,16 @@ public class User implements Serializable {
   private UserStatus status;
 
   //Constructor
-  public User(Long id, String name, String username, String password, String token, UserStatus status) {
-      this.id = id;
-      this.name = name;
-      this.username = username;
-      this.password = password;
-      this.token = token;
-      this.status = status;
-  }
+  public User(Long id, String name, String username, String password, String registrationDate, String birthDate, String token, UserStatus status) {
+        this.id = id;
+        this.name = name;
+        this.username = username;
+        this.password = password;
+        this.registrationDate = registrationDate;
+        this.birthDate = birthDate;
+        this.token = token;
+        this.status = status;
+    }
   //Empty Constructor
   public User() {
     }
@@ -92,6 +101,22 @@ public class User implements Serializable {
 
   public void setToken(String token) {
     this.token = token;
+  }
+
+  public String getRegistrationDate() {
+      return registrationDate;
+  }
+
+  public void setRegistrationDate(String registrationDate) {
+      this.registrationDate = registrationDate;
+  }
+
+  public String getBirthDate() {
+      return birthDate;
+  }
+
+  public void setBirthDate(String birthDate) {
+      this.birthDate = birthDate;
   }
 
   public UserStatus getStatus() {

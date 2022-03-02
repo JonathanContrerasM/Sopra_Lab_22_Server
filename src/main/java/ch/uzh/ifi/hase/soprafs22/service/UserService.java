@@ -1,5 +1,6 @@
 package ch.uzh.ifi.hase.soprafs22.service;
 
+import ch.uzh.ifi.hase.soprafs22.constant.CurrentDate;
 import ch.uzh.ifi.hase.soprafs22.constant.UserStatus;
 import ch.uzh.ifi.hase.soprafs22.entity.User;
 import ch.uzh.ifi.hase.soprafs22.repository.UserRepository;
@@ -43,7 +44,9 @@ public class UserService {
     newUser.setToken(UUID.randomUUID().toString());
     newUser.setStatus(UserStatus.OFFLINE);
 
-    checkIfUserExists(newUser);
+    checkIfUsernameExists(newUser);
+    //If a new user registers the current date is fetched and stored
+    newUser.setRegistrationDate(CurrentDate.getDate());
 
     // saves the given entity but data is only persisted in the database once
     // flush() is called
@@ -52,6 +55,24 @@ public class UserService {
 
     log.debug("Created Information for User: {}", newUser);
     return newUser;
+  }
+
+  public User loginUser(User loginUser) {
+    if(loginUser==null){
+        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, String.format( "username not found"));
+    }
+    User tempUser = userRepository.findByUsername(loginUser.getUsername());
+
+    //Check if the input password equals the one matching with the username
+    if(tempUser.getPassword().equals(loginUser.getPassword())){
+        loginUser.setStatus(UserStatus.ONLINE);
+        tempUser.setStatus(UserStatus.ONLINE);
+
+        log.debug("Login worked {}", loginUser);
+        return tempUser;
+    }
+    //if bug check for the exception
+    throw new ResponseStatusException(HttpStatus.BAD_REQUEST, String.format("password does not match"));
   }
 
   /**
@@ -78,4 +99,16 @@ public class UserService {
       throw new ResponseStatusException(HttpStatus.BAD_REQUEST, String.format(baseErrorMessage, "name", "is"));
     }
   }
+
+    private void checkIfUsernameExists(User userToBeCreated) {
+        User userByUsername = userRepository.findByUsername(userToBeCreated.getUsername());
+
+        String baseErrorMessage = "The %s provided %s not unique. Therefore, the user could not be created!";
+        if (userByUsername != null) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+                    String.format(baseErrorMessage, "username", "is"));
+        } else if (userByUsername != null) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, String.format(baseErrorMessage, "username", "is"));
+        }
+    }
 }
