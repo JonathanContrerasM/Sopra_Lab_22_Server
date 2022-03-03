@@ -1,5 +1,7 @@
 package ch.uzh.ifi.hase.soprafs22.rest.dto;
 
+import java.util.Date;
+
 public class UserPostDTO {
 
   private String name;
@@ -8,7 +10,7 @@ public class UserPostDTO {
 
   private String password;
 
-  private String registrationDate;
+  private Date registrationDate;
 
   private String birthDate;
 
@@ -38,11 +40,11 @@ public class UserPostDTO {
     this.username = username;
   }
 
-  public String getRegistrationDate() {
+  public Date getRegistrationDate() {
       return registrationDate;
   }
 
-  public void setRegistrationDate(String registrationDate) {
+  public void setRegistrationDate(Date registrationDate) {
       this.registrationDate = registrationDate;
   }
 

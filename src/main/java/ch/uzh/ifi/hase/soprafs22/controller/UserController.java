@@ -42,8 +42,8 @@ public class UserController {
     return userGetDTOs;
   }
 
-  //Not sure if we should use Post Mapping here
-  @PostMapping("/userslogin")
+  //Not sure if we should use Post Mapping here but TA confirmed
+  @PostMapping("/login")
   @ResponseStatus(HttpStatus.CREATED)
   @ResponseBody
   public UserGetDTO loginUser(@RequestBody UserPostDTO userPostDTO) {

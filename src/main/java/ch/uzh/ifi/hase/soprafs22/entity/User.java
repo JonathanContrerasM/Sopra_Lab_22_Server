@@ -5,6 +5,7 @@ import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Internal User Representation
@@ -36,10 +37,10 @@ public class User implements Serializable {
   private String password;
 
   @Column(nullable = true)
-  private String registrationDate;
+  private Date registrationDate;
 
   @Column(nullable = true)
-  private String birthDate;
+  private String birthDate;     //Change later to Date Datatype
 
   @Column(nullable = false, unique = true)
   private String token;
@@ -48,7 +49,7 @@ public class User implements Serializable {
   private UserStatus status;
 
   //Constructor
-  public User(Long id, String name, String username, String password, String registrationDate, String birthDate, String token, UserStatus status) {
+  public User(Long id, String name, String username, String password, Date registrationDate, String birthDate, String token, UserStatus status) {
         this.id = id;
         this.name = name;
         this.username = username;
@@ -103,11 +104,11 @@ public class User implements Serializable {
     this.token = token;
   }
 
-  public String getRegistrationDate() {
+  public Date getRegistrationDate() {
       return registrationDate;
   }
 
-  public void setRegistrationDate(String registrationDate) {
+  public void setRegistrationDate(Date registrationDate) {
       this.registrationDate = registrationDate;
   }
 
