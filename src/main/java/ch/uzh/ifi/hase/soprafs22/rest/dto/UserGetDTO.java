@@ -13,6 +13,7 @@ public class UserGetDTO {
   private UserStatus status;
   private Date registrationDate;
   private String birthDate;
+  private String token;
 
 
 
@@ -70,5 +71,9 @@ public class UserGetDTO {
 
   public void setBirthDate(String birthDate) {
       this.birthDate = birthDate;
+  }
+
+  public String getToken() {
+      return token;
   }
 }

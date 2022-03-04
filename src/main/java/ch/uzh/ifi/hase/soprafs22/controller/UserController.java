@@ -42,6 +42,16 @@ public class UserController {
     return userGetDTOs;
   }
 
+  @GetMapping("/users/{id}")
+  @ResponseStatus(HttpStatus.OK)
+  @ResponseBody
+  public UserGetDTO getUserbyID(@PathVariable long id){
+      User tempUser = userService.getUserById(id);
+      UserGetDTO user = DTOMapper.INSTANCE.convertEntityToUserGetDTO(tempUser);
+
+      return user;
+  }
+
   //Not sure if we should use Post Mapping here but TA confirmed
   @PostMapping("/login")
   @ResponseStatus(HttpStatus.CREATED)

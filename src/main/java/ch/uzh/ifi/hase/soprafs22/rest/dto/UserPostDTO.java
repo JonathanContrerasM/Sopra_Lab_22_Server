@@ -14,6 +14,8 @@ public class UserPostDTO {
 
   private String birthDate;
 
+  private String token;
+
 
 
   public String getPassword() {
@@ -55,4 +57,8 @@ public class UserPostDTO {
   public void setBirthDate(String birthDate) {
       this.birthDate = birthDate;
   }
+
+  public String getToken() {
+        return token;
+    }
 }

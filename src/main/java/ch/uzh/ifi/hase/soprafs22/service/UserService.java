@@ -4,6 +4,7 @@ import ch.uzh.ifi.hase.soprafs22.constant.CurrentDate;
 import ch.uzh.ifi.hase.soprafs22.constant.UserStatus;
 import ch.uzh.ifi.hase.soprafs22.entity.User;
 import ch.uzh.ifi.hase.soprafs22.repository.UserRepository;
+import ch.uzh.ifi.hase.soprafs22.rest.dto.UserGetDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -111,5 +112,12 @@ public class UserService {
         } else if (userByUsername != null) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, String.format(baseErrorMessage, "username", "is"));
         }
+    }
+
+    public User getUserById(long id) {
+      User userById = userRepository.findById(id);
+      //Add a check if the user even exists
+
+      return userById;
     }
 }

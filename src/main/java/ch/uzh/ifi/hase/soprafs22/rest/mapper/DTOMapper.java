@@ -27,6 +27,8 @@ public interface DTOMapper {
   @Mapping(source = "password", target = "password")
   @Mapping(source = "registrationDate", target = "registrationDate")
   @Mapping(source = "birthDate", target = "birthDate")
+  @Mapping(source = "token", target = "token")
+
 
   User convertUserPostDTOtoEntity(UserPostDTO userPostDTO);
 
@@ -38,6 +40,7 @@ public interface DTOMapper {
   @Mapping(source = "status", target = "status")
   @Mapping(source = "registrationDate", target = "registrationDate")
   @Mapping(source = "birthDate", target = "birthDate")
+
 
   UserGetDTO convertEntityToUserGetDTO(User user);
 }
