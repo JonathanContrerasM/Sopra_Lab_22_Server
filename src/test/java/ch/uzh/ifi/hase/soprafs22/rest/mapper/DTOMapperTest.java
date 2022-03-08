@@ -38,7 +38,7 @@ public class DTOMapperTest {
     user.setName("Firstname Lastname");
     user.setUsername("firstname@lastname");
     user.setPassword("abcdef123");
-    user.setStatus(UserStatus.OFFLINE);
+    user.setStatus(UserStatus.ONLINE);
     user.setToken("1");
 
     // MAP -> Create UserGetDTO

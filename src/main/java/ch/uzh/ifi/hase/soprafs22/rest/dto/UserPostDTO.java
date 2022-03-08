@@ -61,4 +61,6 @@ public class UserPostDTO {
   public String getToken() {
         return token;
     }
+
+
 }

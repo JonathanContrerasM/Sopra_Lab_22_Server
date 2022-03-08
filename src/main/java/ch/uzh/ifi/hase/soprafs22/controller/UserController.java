@@ -45,7 +45,7 @@ public class UserController {
   @GetMapping("/users/{id}")
   @ResponseStatus(HttpStatus.OK)
   @ResponseBody
-  public UserGetDTO getUserbyID(@PathVariable long id){
+  public UserGetDTO getUserById(@PathVariable long id){
       User tempUser = userService.getUserById(id);
       UserGetDTO user = DTOMapper.INSTANCE.convertEntityToUserGetDTO(tempUser);
 
@@ -80,5 +80,16 @@ public class UserController {
 
     // convert internal representation of user back to API
     return DTOMapper.INSTANCE.convertEntityToUserGetDTO(createdUser);
+  }
+
+  @PutMapping("/setOffline/{id}")
+  @ResponseStatus(HttpStatus.OK)
+  @ResponseBody
+  public UserGetDTO setOffline(@PathVariable Long id){
+      User userOffline = userService.getUserById(id);
+
+      userService.setUserOffline(userOffline);
+
+      return DTOMapper.INSTANCE.convertEntityToUserGetDTO(userOffline);
   }
 }
