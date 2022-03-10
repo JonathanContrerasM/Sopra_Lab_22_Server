@@ -124,13 +124,27 @@ public class UserService {
         return userById;
     }
 
-        public User getUserByToken (String token){
-            User userByToken = userRepository.findByToken(token);
 
-            return userByToken;
-        }
-
-        public void setUserOffline (User userOffline){
-            userOffline.setStatus(UserStatus.OFFLINE);
-        }
+    public void setUserOffline(User userOffline) {
+        userOffline.setStatus(UserStatus.OFFLINE);
     }
+
+    public User updateUser(User inputUser, String username, String birthDate) {
+        //Add check if Username is already taken
+        if (inputUser == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,
+                    String.format("The user with this id does not exist!"));
+        }
+
+
+        inputUser.setUsername(username);
+        inputUser.setBirthDate(birthDate);
+
+        userRepository.save(inputUser);
+        userRepository.flush();
+
+        log.debug("Updated information for User: {}", inputUser);
+        return inputUser;
+
+    }
+}
