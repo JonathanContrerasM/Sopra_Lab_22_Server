@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -129,7 +130,7 @@ public class UserService {
         userOffline.setStatus(UserStatus.OFFLINE);
     }
 
-    public User updateUser(User inputUser, String username, String birthDate) {
+    public User updateUser(User inputUser, String username, Date birthDate) {
         //Add check if Username is already taken
         if (inputUser == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,

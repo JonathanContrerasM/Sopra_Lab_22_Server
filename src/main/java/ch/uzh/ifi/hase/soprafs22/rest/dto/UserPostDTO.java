@@ -12,7 +12,7 @@ public class UserPostDTO {
 
   private Date registrationDate;
 
-  private String birthDate;
+  private Date birthDate;
 
   private String token;
 
@@ -50,11 +50,11 @@ public class UserPostDTO {
       this.registrationDate = registrationDate;
   }
 
-  public String getBirthDate() {
+  public Date getBirthDate() {
       return birthDate;
   }
 
-  public void setBirthDate(String birthDate) {
+  public void setBirthDate(Date birthDate) {
       this.birthDate = birthDate;
   }
 

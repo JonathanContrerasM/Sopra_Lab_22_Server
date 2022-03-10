@@ -40,7 +40,7 @@ public class User implements Serializable {
   private Date registrationDate;
 
   @Column(nullable = true)
-  private String birthDate;     //Change later to Date Datatype
+  private Date birthDate;     //Change later to Date Datatype
 
   @Column(nullable = false, unique = true)
   private String token;
@@ -49,7 +49,7 @@ public class User implements Serializable {
   private UserStatus status;
 
   //Constructor
-  public User(Long id, String name, String username, String password, Date registrationDate, String birthDate, String token, UserStatus status) {
+  public User(Long id, String name, String username, String password, Date registrationDate, Date birthDate, String token, UserStatus status) {
         this.id = id;
         this.name = name;
         this.username = username;
@@ -112,11 +112,11 @@ public class User implements Serializable {
       this.registrationDate = registrationDate;
   }
 
-  public String getBirthDate() {
+  public Date getBirthDate() {
       return birthDate;
   }
 
-  public void setBirthDate(String birthDate) {
+  public void setBirthDate(Date birthDate) {
       this.birthDate = birthDate;
   }
 

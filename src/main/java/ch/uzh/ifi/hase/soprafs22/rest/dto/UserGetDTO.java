@@ -12,7 +12,7 @@ public class UserGetDTO {
   private String password;
   private UserStatus status;
   private Date registrationDate;
-  private String birthDate;
+  private Date birthDate;
   private String token;
 
 
@@ -65,11 +65,11 @@ public class UserGetDTO {
       this.registrationDate = registrationDate;
   }
 
-  public String getBirthDate() {
+  public Date getBirthDate() {
       return birthDate;
   }
 
-  public void setBirthDate(String birthDate) {
+  public void setBirthDate(Date birthDate) {
       this.birthDate = birthDate;
   }
 
