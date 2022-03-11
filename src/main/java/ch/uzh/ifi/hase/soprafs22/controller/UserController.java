@@ -88,7 +88,9 @@ public class UserController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @ResponseBody
     public UserGetDTO updateUser(@RequestBody UserPutDTO userPutDTO, @PathVariable Long id) {
-
+        //Check if the user that is edited is also the user that is logged in
+        userService.checkAccess(userPutDTO, id);
+        //Sets the inputUser to the one accordingly to the pathvariable
         User inputUser = userService.getUserById(id);
 
         User userUpdate = userService.updateUser(inputUser, userPutDTO.getUsername(), userPutDTO.getBirthDate());

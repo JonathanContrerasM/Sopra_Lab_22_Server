@@ -5,6 +5,7 @@ import ch.uzh.ifi.hase.soprafs22.constant.UserStatus;
 import ch.uzh.ifi.hase.soprafs22.entity.User;
 import ch.uzh.ifi.hase.soprafs22.repository.UserRepository;
 import ch.uzh.ifi.hase.soprafs22.rest.dto.UserGetDTO;
+import ch.uzh.ifi.hase.soprafs22.rest.dto.UserPutDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -147,5 +148,14 @@ public class UserService {
         log.debug("Updated information for User: {}", inputUser);
         return inputUser;
 
+    }
+
+    public void checkAccess(UserPutDTO userPutDTO, Long id) {
+        if (userPutDTO.getId()!= id){
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED,
+                    String.format("You dont have access to edit this user"));
+
+
+        }
     }
 }
