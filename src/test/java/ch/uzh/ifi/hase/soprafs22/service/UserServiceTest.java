@@ -55,6 +55,8 @@ public class UserServiceTest {
     assertEquals(UserStatus.ONLINE, createdUser.getStatus());
   }
 
+  /**
+
   @Test
   public void createUser_duplicateName_throwsException() {
     // given -> a first user has already been created
@@ -69,6 +71,7 @@ public class UserServiceTest {
     assertThrows(ResponseStatusException.class, () -> userService.createUser(testUser));
   }
 
+   */
   @Test
   public void createUser_duplicateInputs_throwsException() {
     // given -> a first user has already been created

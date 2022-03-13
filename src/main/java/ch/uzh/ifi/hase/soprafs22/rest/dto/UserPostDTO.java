@@ -1,5 +1,7 @@
 package ch.uzh.ifi.hase.soprafs22.rest.dto;
 
+import ch.uzh.ifi.hase.soprafs22.constant.UserStatus;
+
 import java.util.Date;
 
 public class UserPostDTO {
@@ -15,6 +17,10 @@ public class UserPostDTO {
   private Date birthDate;
 
   private String token;
+
+  private Long id;
+
+  private UserStatus status;
 
 
 
@@ -62,5 +68,19 @@ public class UserPostDTO {
         return token;
     }
 
+    public Long getId() {
+        return id;
+    }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public UserStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(UserStatus status) {
+        this.status = status;
+    }
 }
