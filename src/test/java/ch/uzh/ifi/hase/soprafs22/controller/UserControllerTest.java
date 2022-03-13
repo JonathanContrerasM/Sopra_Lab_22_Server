@@ -31,8 +31,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import java.time.*;
-
 /**
  * UserControllerTest
  * This is a WebMvcTest which allows to test the UserController i.e. GET/POST
@@ -54,7 +52,7 @@ public class UserControllerTest {
         User user = new User();
         user.setName("Firstname Lastname");
         user.setUsername("firstname@lastname");
-        user.setStatus(UserStatus.OFFLINE);
+        user.setLogged_in(UserStatus.OFFLINE);
 
         List<User> allUsers = Collections.singletonList(user);
 
@@ -70,7 +68,7 @@ public class UserControllerTest {
                 .andExpect(jsonPath("$", hasSize(1)))
                 .andExpect(jsonPath("$[0].name", is(user.getName())))
                 .andExpect(jsonPath("$[0].username", is(user.getUsername())))
-                .andExpect(jsonPath("$[0].status", is(user.getStatus().toString())));
+                .andExpect(jsonPath("$[0].logged_in", is(user.getLogged_in().toString())));
     }
 
     // Nr.1
@@ -84,7 +82,7 @@ public class UserControllerTest {
         user.setUsername("testUsername");
         user.setPassword("abcdefg1234");
         user.setToken("1");
-        user.setStatus(UserStatus.ONLINE);
+        user.setLogged_in(UserStatus.ONLINE);
 
         UserPostDTO userPostDTO = new UserPostDTO();
         userPostDTO.setName("Test User");
@@ -104,7 +102,7 @@ public class UserControllerTest {
                 .andExpect(jsonPath("$.name", is(user.getName())))
                 .andExpect(jsonPath("$.username", is(user.getUsername())))
                 .andExpect(jsonPath("$.password", is((user.getPassword()))))
-                .andExpect(jsonPath("$.status", is(user.getStatus().toString())));
+                .andExpect(jsonPath("$.logged_in", is(user.getLogged_in().toString())));
     }
 
     // Nr 3
@@ -119,7 +117,7 @@ public class UserControllerTest {
         user.setUsername("testUsername");
         user.setName("testname");
         user.setToken("1");
-        user.setStatus(UserStatus.ONLINE);
+        user.setLogged_in(UserStatus.ONLINE);
 
         UserGetDTO userGetDTO = new UserGetDTO();
         userGetDTO.setPassword(user.getPassword());
@@ -139,7 +137,7 @@ public class UserControllerTest {
                 .andExpect(jsonPath("$.id", is(user.getId())))
                 .andExpect(jsonPath("$.password", is(user.getPassword())))
                 .andExpect(jsonPath("$.username", is(user.getUsername())))
-                .andExpect(jsonPath("$.status", is(user.getStatus().toString())))
+                .andExpect(jsonPath("$.logged_in", is(user.getLogged_in().toString())))
                 .andExpect(jsonPath("$.name", is(user.getName())))
                 .andExpect(jsonPath("$.token", is(user.getToken())));
     }
@@ -158,14 +156,14 @@ public class UserControllerTest {
         user.setUsername("testUsername");
         user.setName("testName");
         user.setToken("1");
-        user.setBirthDate(tempDate);
+        user.setBirthday(tempDate);
 
 
         User userUpdates = new User();
         userUpdates.setId(1L);
         userUpdates.setUsername("updateUsername");
         userUpdates.setName("testName");
-        userUpdates.setBirthDate(tempDate);
+        userUpdates.setBirthday(tempDate);
 
         given(userService.updateUser(Mockito.any(), Mockito.anyString(), Mockito.any())).willReturn(user);
 

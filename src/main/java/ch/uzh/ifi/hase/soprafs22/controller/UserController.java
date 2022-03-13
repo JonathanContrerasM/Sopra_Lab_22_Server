@@ -8,7 +8,6 @@ import ch.uzh.ifi.hase.soprafs22.rest.mapper.DTOMapper;
 import ch.uzh.ifi.hase.soprafs22.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.annotation.RequestScope;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -90,10 +89,10 @@ public class UserController {
     public UserGetDTO updateUser(@RequestBody UserPutDTO userPutDTO, @PathVariable Long id) {
         //Check if the user that is edited is also the user that is logged in
         userService.checkAccess(userPutDTO, id);
-        //Sets the inputUser to the one accordingly to the pathvariable
+        //Sets the inputUser to the one accordingly to the path-variable
         User inputUser = userService.getUserById(id);
 
-        User userUpdate = userService.updateUser(inputUser, userPutDTO.getUsername(), userPutDTO.getBirthDate());
+        User userUpdate = userService.updateUser(inputUser, userPutDTO.getUsername(), userPutDTO.getBirthday());
 
         return DTOMapper.INSTANCE.convertEntityToUserGetDTO(userUpdate);
     }

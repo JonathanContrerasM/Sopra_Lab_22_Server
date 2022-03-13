@@ -26,8 +26,8 @@ public interface DTOMapper {
     @Mapping(source = "name", target = "name")
     @Mapping(source = "username", target = "username")
     @Mapping(source = "password", target = "password")
-    @Mapping(source = "registrationDate", target = "registrationDate")
-    @Mapping(source = "birthDate", target = "birthDate")
+    @Mapping(source = "creation_date", target = "creation_date")
+    @Mapping(source = "birthday", target = "birthday")
     @Mapping(source = "token", target = "token")
     User convertUserPostDTOtoEntity(UserPostDTO userPostDTO);
 
@@ -36,16 +36,16 @@ public interface DTOMapper {
     @Mapping(source = "name", target = "name")
     @Mapping(source = "username", target = "username")
     @Mapping(source = "password", target = "password")
-    @Mapping(source = "status", target = "status")
-    @Mapping(source = "registrationDate", target = "registrationDate")
-    @Mapping(source = "birthDate", target = "birthDate")
+    @Mapping(source = "logged_in", target = "logged_in")
+    @Mapping(source = "creation_date", target = "creation_date")
+    @Mapping(source = "birthday", target = "birthday")
     UserGetDTO convertEntityToUserGetDTO(User user);
 
     @Mapping(source = "name", target = "name")
     @Mapping(source = "username", target = "username")
     @Mapping(source = "password", target = "password")
-    @Mapping(source = "registrationDate", target = "registrationDate")
-    @Mapping(source = "birthDate", target = "birthDate")
+    @Mapping(source = "creation_date", target = "creation_date")
+    @Mapping(source = "birthday", target = "birthday")
     @Mapping(source = "token", target = "token")
     @Mapping(source = "id", target = "id")
     User convertUserPutDTOtoEntity (UserPutDTO userPutDTO);

@@ -12,15 +12,15 @@ public class UserPostDTO {
 
   private String password;
 
-  private Date registrationDate;
+  private Date creation_date;
 
-  private Date birthDate;
+  private Date birthday;
 
   private String token;
 
   private Long id;
 
-  private UserStatus status;
+  private UserStatus logged_in;
 
 
 
@@ -48,20 +48,20 @@ public class UserPostDTO {
     this.username = username;
   }
 
-  public Date getRegistrationDate() {
-      return registrationDate;
+  public Date getCreation_date() {
+      return creation_date;
   }
 
-  public void setRegistrationDate(Date registrationDate) {
-      this.registrationDate = registrationDate;
+  public void setCreation_date(Date creation_date) {
+      this.creation_date = creation_date;
   }
 
-  public Date getBirthDate() {
-      return birthDate;
+  public Date getBirthday() {
+      return birthday;
   }
 
-  public void setBirthDate(Date birthDate) {
-      this.birthDate = birthDate;
+  public void setBirthday(Date birthday) {
+      this.birthday = birthday;
   }
 
   public String getToken() {
@@ -76,11 +76,11 @@ public class UserPostDTO {
         this.id = id;
     }
 
-    public UserStatus getStatus() {
-        return status;
+    public UserStatus getLogged_in() {
+        return logged_in;
     }
 
-    public void setStatus(UserStatus status) {
-        this.status = status;
+    public void setLogged_in(UserStatus logged_in) {
+        this.logged_in = logged_in;
     }
 }

@@ -4,7 +4,6 @@ import ch.uzh.ifi.hase.soprafs22.constant.CurrentDate;
 import ch.uzh.ifi.hase.soprafs22.constant.UserStatus;
 import ch.uzh.ifi.hase.soprafs22.entity.User;
 import ch.uzh.ifi.hase.soprafs22.repository.UserRepository;
-import ch.uzh.ifi.hase.soprafs22.rest.dto.UserGetDTO;
 import ch.uzh.ifi.hase.soprafs22.rest.dto.UserPutDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,11 +44,11 @@ public class UserService {
 
     public User createUser(User newUser) {
         newUser.setToken(UUID.randomUUID().toString());
-        newUser.setStatus(UserStatus.ONLINE);
+        newUser.setLogged_in(UserStatus.ONLINE);
 
         checkIfUsernameExists(newUser);
         //If a new user registers the current date is fetched and stored
-        newUser.setRegistrationDate(CurrentDate.getDate());
+        newUser.setCreation_date(CurrentDate.getDate());
 
         // saves the given entity but data is only persisted in the database once
         // flush() is called
@@ -69,8 +68,8 @@ public class UserService {
 
         //Check if the input password equals the one matching with the username
         if (tempUser.getPassword().equals(loginUser.getPassword())) {
-            loginUser.setStatus(UserStatus.ONLINE);
-            tempUser.setStatus(UserStatus.ONLINE);
+            loginUser.setLogged_in(UserStatus.ONLINE);
+            tempUser.setLogged_in(UserStatus.ONLINE);
 
             log.debug("Login worked {}", loginUser);
             return tempUser;
@@ -128,10 +127,10 @@ public class UserService {
 
 
     public void setUserOffline(User userOffline) {
-        userOffline.setStatus(UserStatus.OFFLINE);
+        userOffline.setLogged_in(UserStatus.OFFLINE);
     }
 
-    public User updateUser(User inputUser, String username, Date birthDate) {
+    public User updateUser(User inputUser, String username, Date birthday) {
         //Add check if Username is already taken
         if (inputUser == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,
@@ -140,7 +139,7 @@ public class UserService {
 
 
         inputUser.setUsername(username);
-        inputUser.setBirthDate(birthDate);
+        inputUser.setBirthday(birthday);
 
         userRepository.save(inputUser);
         userRepository.flush();
@@ -153,7 +152,7 @@ public class UserService {
     public void checkAccess(UserPutDTO userPutDTO, Long id) {
         if (userPutDTO.getId()!= id){
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED,
-                    String.format("You dont have access to edit this user"));
+                    String.format("You don't have access to edit this user"));
 
 
         }

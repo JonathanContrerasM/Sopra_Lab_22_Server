@@ -1,7 +1,6 @@
 package ch.uzh.ifi.hase.soprafs22.entity;
 
 import ch.uzh.ifi.hase.soprafs22.constant.UserStatus;
-import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -37,27 +36,27 @@ public class User implements Serializable {
   private String password;
 
   @Column(nullable = true)
-  private Date registrationDate;
+  private Date creation_date;
 
   @Column(nullable = true)
-  private Date birthDate;     //Change later to Date Datatype
+  private Date birthday;     //Change later to Date Datatype
 
   @Column(nullable = false, unique = true)
   private String token;
 
   @Column(nullable = false)
-  private UserStatus status;
+  private UserStatus logged_in;
 
   //Constructor
-  public User(Long id, String name, String username, String password, Date registrationDate, Date birthDate, String token, UserStatus status) {
+  public User(Long id, String name, String username, String password, Date creation_date, Date birthday, String token, UserStatus logged_in) {
         this.id = id;
         this.name = name;
         this.username = username;
         this.password = password;
-        this.registrationDate = registrationDate;
-        this.birthDate = birthDate;
+        this.creation_date = creation_date;
+        this.birthday = birthday;
         this.token = token;
-        this.status = status;
+        this.logged_in = logged_in;
     }
   //Empty Constructor
   public User() {
@@ -104,27 +103,27 @@ public class User implements Serializable {
     this.token = token;
   }
 
-  public Date getRegistrationDate() {
-      return registrationDate;
+  public Date getCreation_date() {
+      return creation_date;
   }
 
-  public void setRegistrationDate(Date registrationDate) {
-      this.registrationDate = registrationDate;
+  public void setCreation_date(Date creation_date) {
+      this.creation_date = creation_date;
   }
 
-  public Date getBirthDate() {
-      return birthDate;
+  public Date getBirthday() {
+      return birthday;
   }
 
-  public void setBirthDate(Date birthDate) {
-      this.birthDate = birthDate;
+  public void setBirthday(Date birthday) {
+      this.birthday = birthday;
   }
 
-  public UserStatus getStatus() {
-    return status;
+  public UserStatus getLogged_in() {
+    return logged_in;
   }
 
-  public void setStatus(UserStatus status) {
-    this.status = status;
+  public void setLogged_in(UserStatus logged_in) {
+    this.logged_in = logged_in;
   }
 }
